@@ -2,11 +2,13 @@
 
 void setup()
 {
-    Blinky led('D', 4, 750, 350);
+    Blinky led1('D', 3, 1000, 300);
+    Blinky led2('D', 2, 1000, 300);
 
     while(1)
     {
-        led.Refresh();
+        led1.Refresh();
+        led2.Refresh();
     }
 
 }

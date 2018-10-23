@@ -5,22 +5,20 @@
 
 class Blinky
 {
-  public:
-    char portName;
-    int pin;
-    unsigned long ONTime, OFFTime;
+public:
 
-    void Refresh();
-    Blinky(char, int, unsigned long, unsigned long);
+  Blinky(char, int, unsigned long, unsigned long);
+  void Refresh();
 
-  private:
-    unsigned char **ddr = (unsigned char **)NULL;
-    unsigned char **port = (unsigned char **)NULL;
-    bool isFirstTimeRun = 1;
-    unsigned long ONWait, OFFWait;
+private:
+  unsigned long _ONWait, _OFFWait, _ONTime, _OFFTime;
+  char _portName;
+  int _pin;
+  bool _isON = 0;
 
-    void mapPorts();
-    void initializePorts();
+  void initializePorts();
+  void turnON();
+  void turnOFF();
 };
 
 #endif
