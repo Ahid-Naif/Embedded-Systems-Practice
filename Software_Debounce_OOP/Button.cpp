@@ -13,10 +13,10 @@ unsigned char *portd = (unsigned char *)0x2B;
 Button::Button(char port, int pin, unsigned long debouncePeriod, bool isButtonHigh, bool isPullUp) : 
     _portName(port), _pin(pin), _debouncePeriod(debouncePeriod), _isButtonHigh(isButtonHigh), _isPullUp(isPullUp)
 {
-    this->initializePorts();
+    this->initialize();
 }
 ///////////////// define class methods /////////
-void Button::initializePorts()
+void Button::initialize()
 {
     // if one of _isButtonHigh & _isPullUp is HIGH, logic is going to be inverted, otherwise, it stays the same
     this->_previousState = this->_isButtonHigh ^ this->_isPullUp;
