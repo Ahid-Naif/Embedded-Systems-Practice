@@ -10,14 +10,10 @@ unsigned char *pind = (unsigned char *)0x29;
 unsigned char *ddrd = (unsigned char *)0x2A;
 unsigned char *portd = (unsigned char *)0x2B;
 
-Blinky::Blinky(char port, int pin, unsigned long ONTime, unsigned long OFFTime)
+Blinky::Blinky(char port, int pin, unsigned long ONTime, unsigned long OFFTime):
+    _portName(port), _pin(pin), _ONTime(ONTime), _OFFTime(OFFTime)
 {
-    this->_portName = port;
-    this->_pin = pin;
-    this->_ONTime = ONTime;
-    this->_OFFTime = OFFTime;
-
-    this->initializePorts();
+    this->initialize();
     this->_OFFWait = millis();
     this->_ONWait = millis();
 }
@@ -45,7 +41,7 @@ void Blinky::Refresh()
     }
 }
 
-void Blinky::initializePorts()
+void Blinky::initialize()
 {
     switch (this->_portName)
     {
