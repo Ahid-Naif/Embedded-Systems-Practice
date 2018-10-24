@@ -1,5 +1,5 @@
 #include "Blinky.h"
-
+//////////////// define registers //////////////
 unsigned char *pinb = (unsigned char *)0x23;
 unsigned char *ddrb = (unsigned char *)0x24;
 unsigned char *portb = (unsigned char *)0x25;
@@ -9,7 +9,7 @@ unsigned char *portc = (unsigned char *)0x28;
 unsigned char *pind = (unsigned char *)0x29;
 unsigned char *ddrd = (unsigned char *)0x2A;
 unsigned char *portd = (unsigned char *)0x2B;
-
+/////////////////// define Constructor //////////
 Blinky::Blinky(char port, int pin, unsigned long ONTime, unsigned long OFFTime):
     _portName(port), _pin(pin), _ONTime(ONTime), _OFFTime(OFFTime)
 {
@@ -17,10 +17,9 @@ Blinky::Blinky(char port, int pin, unsigned long ONTime, unsigned long OFFTime):
     this->_OFFWait = millis();
     this->_ONWait = millis();
 }
-
+///////////////// define class methods /////////
 void Blinky::Refresh()
 {
-
     if (this->_isON) // if LED is ON
     {
         if ((millis() - this->_ONWait) >= this->_ONTime)
@@ -46,13 +45,13 @@ void Blinky::initialize()
     switch (this->_portName)
     {
     case 'B':
-        *ddrb |= (1 << this->_pin); // determine directions as OUTPUT
+        *ddrb |= (1 << this->_pin); // determine direction of the pin as OUTPUT
         break;
     case 'C':
-        *ddrc |= (1 << this->_pin); // determine directions as OUTPUT
+        *ddrc |= (1 << this->_pin); // determine direction of the pin as OUTPUT
         break;
     case 'D':
-        *ddrd |= (1 << this->_pin); // determine directions as OUTPUT
+        *ddrd |= (1 << this->_pin); // determine direction of the pin as OUTPUT
         break;
     }
 }

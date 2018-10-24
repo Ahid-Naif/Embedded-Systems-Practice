@@ -6,19 +6,19 @@
 class Blinky
 {
 public:
-
-  Blinky(char, int, unsigned long, unsigned long);
-  void Refresh();
+  Blinky(char, int, unsigned long, unsigned long); // constructor
+  void Refresh(); // to keep counting delays & blinking the LEDs
 
 private:
-  unsigned long _ONWait, _OFFWait, _ONTime, _OFFTime;
+  unsigned long _ONWait, _OFFWait; // used when keeping the LED ON
+  unsigned long _ONTime, _OFFTime; // used when keeping the LED OFF
   char _portName;
   int _pin;
-  bool _isON = 0;
+  bool _isON = 0; // is LED ON?
 
-  void initializePorts();
-  void turnON();
-  void turnOFF();
+  void initialize(); // to set the initial values of the registers
+  void turnON(); // turn LED ON
+  void turnOFF(); // turn LED OFF
 };
 
 #endif
