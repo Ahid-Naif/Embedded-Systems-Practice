@@ -18,19 +18,20 @@ Button::Button(char port, int pin, unsigned long debouncePeriod, bool isButtonHi
 
 void Button::initializePorts()
 {
+    this->_previousState = this->_isButtonHigh ^ this->_isPullUp;
     switch (this->_portName)
     {
     case 'B':
         *ddrb &= ~(1 << this->_pin); // determine directions as INPUT
-        *portb &= ~(1 << this->_pin);
+        (this->_isPullUp) ? *portb |= (1 << this->_pin) : *portb &= ~(1 << this->_pin);
         break;
     case 'C':
         *ddrc &= ~(1 << this->_pin); // determine directions as INPUT
-        *portc &= ~(1 << this->_pin);
+        (this->_isPullUp) ? *portc |= (1 << this->_pin) : *portc &= ~(1 << this->_pin);
         break;
     case 'D':
         *ddrd &= ~(1 << this->_pin); // determine directions as INPUT
-        *portc &= ~(1 << this->_pin);
+        (this->_isPullUp) ? *portd |= (1 << this->_pin) : *portd &= ~(1 << this->_pin);
         break;
     }
 }
