@@ -8,7 +8,7 @@ class Button
 public:
   Button(char, int, unsigned long, bool, bool); // constructor
   void (*Pressed)(void);
-  void Refresh();
+  void Refresh(); // to keep checking for pressed buttons
 
 private:
   char _portName; // to store port name
@@ -20,7 +20,7 @@ private:
   bool _currentState, _previousState; // to store previous & current states of the button
 
   void initialize(); // to set the initial values of the registers & previous state (ON/OFF)
-  void updateStatus(); // to read the state of the button from the register pin B/C/D
+  void updateStatus(); // to update the value of _currentState variable by reading the pin B/C/D register
 };
 
 #endif
