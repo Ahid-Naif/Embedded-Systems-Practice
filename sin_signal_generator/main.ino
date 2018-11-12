@@ -13,14 +13,14 @@ void setup()
 
     unsigned long startTimer = 0;
     // sampling period.. a bit little that 11 ms because other operations are causing delay as well
-    unsigned long delayTime = 10.95;  // unit is ms
-    int t = 0;
+    unsigned long samplingPeriod = 10.95;  // unit is ms
+    int t = 0; 
     Serial.begin(9600);
 
-    check = millis();
+    startTimer = millis();
     for(;;)
     {
-        if((millis() - startTimer) >= delayTime)
+        if((millis() - startTimer) >= samplingPeriod)
         {
             float angle_radians = (PI/180)*t;
             float value = sin(angle_radians) + 1; // shift sin fuction 1 unit up to have only positive output
