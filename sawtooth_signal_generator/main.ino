@@ -13,7 +13,7 @@ void setup()
     unsigned long startTimer = 0;
     unsigned long samplingPeriod = 11;  // unit is ms .. 1/90.91Hz = 11 ms
     float signalPeriod = 3; // unit is seconds
-    unsigned char topValue = 255; // top value of the sawtooth function
+    unsigned char topValue = 250; // top value of the sawtooth function
     unsigned char slope = topValue / signalPeriod; // find slope
     float t = 0; // represents time axis/x-axis
     Serial.begin(9600);
