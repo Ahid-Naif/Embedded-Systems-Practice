@@ -12,7 +12,6 @@ void setup()
     *ddrb |= (1 << 1); // set pin B01 as output
 
     unsigned long startTimer = 0;
-    // sampling period.. a bit little that 11 ms because other operations are causing delay as well
     unsigned long samplingPeriod = 11;  // unit is ms
     float frequency = 0.2; // signal frquency = 1 / signal period = 1 / 5 = 0.2
     float t = 0; // represents angles axis/x-axis
@@ -26,7 +25,7 @@ void setup()
 
             *ocr1al = value;
             Serial.println(value);
-           t+= 0.1; // increment the angle
+            t+= 0.01; // increment the angle
 
             startTimer = millis();
         }
