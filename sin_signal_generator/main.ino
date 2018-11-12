@@ -14,7 +14,7 @@ void setup()
     unsigned long startTimer = 0;
     // sampling period.. a bit little that 11 ms because other operations are causing delay as well
     unsigned long samplingPeriod = 10.95;  // unit is ms
-    int t = 0; 
+    int t = 0; // represents angles axis/x-axis
     Serial.begin(9600);
 
     startTimer = millis();
@@ -22,18 +22,19 @@ void setup()
     {
         if((millis() - startTimer) >= samplingPeriod)
         {
-            float angle_radians = (PI/180)*t;
+            float angle_radians = (PI/180)*t; // convert angle into radian
             float value = sin(angle_radians) + 1; // shift sin fuction 1 unit up to have only positive output
 
             *ocr1al = value;
             Serial.println(value);
             if(t == 360)
             {
+                // if t completes full cycle(360 degress), set it back to zero to avoid overflow
                 t = 0;
             }
             else
             {
-                t++;
+                t++; // increment the angle
             }
 
             startTimer = millis();
