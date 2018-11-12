@@ -12,7 +12,7 @@ void setup()
     *ddrb |= (1 << 1); // set pin B01 as output
 
     unsigned long startTimer = 0;
-    unsigned long samplingPeriod = 11;  // unit is ms
+    unsigned long samplingPeriod = 11;  // unit is ms .. 1/90.91Hz = 11 ms
     float frequency = 0.2; // signal frquency = 1 / signal period = 1 / 5 = 0.2
     float t = 0; // represents angles axis/x-axis
     Serial.begin(9600);
@@ -21,7 +21,9 @@ void setup()
     {
         if((millis() - startTimer) >= samplingPeriod)
         {
-            float value = sin(2*PI * frequency * t) + 1; // shift sin fuction 1 unit up to have only positive output
+            // shift sin fuction 1 unit up to have only positive output
+            // multiply by 125 so top value becomes 255
+            float value = 125 * (sin(2*PI * frequency * t) + 1); 
 
             *ocr1al = value;
             Serial.println(value);
