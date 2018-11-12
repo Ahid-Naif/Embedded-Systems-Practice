@@ -12,9 +12,9 @@ void setup()
 
     unsigned long startTimer = 0;
     unsigned long samplingPeriod = 11;  // unit is ms .. 1/90.91Hz = 11 ms
-    float signalPeriod = 3; // signal frquency = 1 / signal period = 1 / 3 = 0.33
-    unsigned char topValue = 255;
-    unsigned char slope = topValue / signalPeriod;
+    float signalPeriod = 3; // unit is seconds
+    unsigned char topValue = 255; // top value of the sawtooth function
+    unsigned char slope = topValue / signalPeriod; // find slope
     float t = 0; // represents time axis/x-axis
     Serial.begin(9600);
     startTimer = millis();
@@ -22,10 +22,10 @@ void setup()
     {
         if((millis() - startTimer) >= samplingPeriod)
         {
-            unsigned char value = slope * t;
+            unsigned char value = slope * t; // straight line equation.. y intercept is 0
             *ocr2b = value;
             Serial.println(value);
-            t+= 0.01;
+            t+= 0.01; // increment t
 
             startTimer = millis();
         }
