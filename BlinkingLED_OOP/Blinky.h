@@ -15,6 +15,7 @@ private:
   char _portName;
   int _pin;
   bool _isON = 0; // is LED ON?
+  bool _is1stRun = 1 // true if the LED just started blinking, then, it's set OFF all the time
 
   void initialize(); // to set the initial values of the registers
   void turnON(); // turn LED ON

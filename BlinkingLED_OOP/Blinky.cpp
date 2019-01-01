@@ -14,8 +14,6 @@ Blinky::Blinky(char port, int pin, unsigned long ONTime, unsigned long OFFTime) 
     _portName(port), _pin(pin), _ONTime(ONTime), _OFFTime(OFFTime)
 {
     this->initialize();
-    this->_OFFWait = millis();
-    this->_ONWait = millis();
 }
 ///////////////// define class methods /////////
 void Blinky::Refresh()
@@ -31,6 +29,11 @@ void Blinky::Refresh()
     }
     else // else if LED is OFF
     {
+        if(this->_is1stRun)
+        {
+            this->_OFFWait = millis();
+            this->_is1stRun = false;
+        }
         if ((millis() - this->_OFFWait) >= this->_OFFTime)
         {
             this->turnON(); // turn pin ON
