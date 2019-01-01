@@ -90,3 +90,9 @@ void Blinky::turnOFF()
         break;
     }
 }
+
+void Blinky::changeOnOffTimes(unsigned long newONTime, unsigned long newOFFTime)
+{
+    this->_ONTime = newONTime;
+    this->_OFFTime = newOFFTime;
+}

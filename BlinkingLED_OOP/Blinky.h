@@ -7,7 +7,9 @@ class Blinky
 {
 public:
   Blinky(char, int, unsigned long, unsigned long); // constructor
+
   void Refresh(); // to keep counting delays & blinking the LEDs
+  void changeOnOffTimes(unsigned long, unsigned long);
 
 private:
   unsigned long _ONWait, _OFFWait; // used when keeping the LED ON
@@ -15,7 +17,7 @@ private:
   char _portName;
   int _pin;
   bool _isON = 0; // is LED ON?
-  bool _is1stRun = 1 // true if the LED just started blinking, then, it's set OFF all the time
+  bool _is1stRun = 1; // true if the LED just started blinking, then, it's set OFF all the time
 
   void initialize(); // to set the initial values of the registers
   void turnON(); // turn LED ON
