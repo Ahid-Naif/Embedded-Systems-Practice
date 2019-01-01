@@ -20,25 +20,25 @@ void Blinky::Refresh()
 {
     if (this->_isON) // if LED is ON
     {
-        if ((millis() - this->_ONWait) >= this->_ONTime)
+        if ((micros() - this->_ONWait) >= this->_ONTime)
         {
             this->turnOFF();
             this->_isON = 0;
-            this->_OFFWait = millis();
+            this->_OFFWait = micros();
         }
     }
     else // else if LED is OFF
     {
         if(this->_is1stRun)
         {
-            this->_OFFWait = millis();
+            this->_OFFWait = micros();
             this->_is1stRun = false;
         }
-        if ((millis() - this->_OFFWait) >= this->_OFFTime)
+        if ((micros() - this->_OFFWait) >= this->_OFFTime)
         {
             this->turnON(); // turn pin ON
             this->_isON = 1;
-            this->_ONWait = millis();
+            this->_ONWait = micros();
         }
     }
 }
